@@ -1,6 +1,8 @@
 package main
 
 import (
+	"internal/app/sqlite/sqliteorm"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -85,6 +87,16 @@ func main() {
 		c.JSON(200, gin.H{
 			"message": "使用 BindJSON 解析 JSON 数据成功",
 			"form":    form,
+		})
+	})
+
+	// 访问 /sqlite 路径时，调用 sqlite 包中的 CRUD 函数
+	// curl -X GET http://localhost:8080/sqlite
+	r.GET("/sqlite", func(c *gin.Context) {
+		// 调用 sqlite 包中的 CRUD 函数
+		sqliteorm.CRUD()
+		c.JSON(200, gin.H{
+			"message": "SQLite CRUD 操作已执行",
 		})
 	})
 
