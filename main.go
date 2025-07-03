@@ -1,7 +1,7 @@
 package main
 
 import (
-	"internal/app/sqlite/sqliteorm"
+	"github.com/easelify/mywebapp/pkg/sqliteorm"
 
 	"github.com/gin-gonic/gin"
 )
