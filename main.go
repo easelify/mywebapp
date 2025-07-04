@@ -1,6 +1,8 @@
 package main
 
 import (
+	// 提示: 包名和目录名不一致时需要使用别名导入, 避免包名冲突或简化长包名时也可以用别名
+	"github.com/easelify/mywebapp/configs/appconfig"
 	"github.com/easelify/mywebapp/pkg/sqliteorm"
 
 	"github.com/gin-gonic/gin"
@@ -97,6 +99,13 @@ func main() {
 		sqliteorm.CRUD()
 		c.JSON(200, gin.H{
 			"message": "SQLite CRUD 操作已执行",
+		})
+	})
+
+	r.GET("/config", func(c *gin.Context) {
+		cfgs := appconfig.LoadConfig()
+		c.JSON(200, gin.H{
+			"configs": cfgs,
 		})
 	})
 
